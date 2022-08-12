@@ -28,7 +28,8 @@ def main():
                 "groupId": "909", 
                 "groupVerificationCode": wom_code
             }
-    
+    create_comp = requests.post("https://api.wiseoldman.net/competitions", json=payload)
+    print(create_comp)
     
 if __name__ == '__main__':
     main()
