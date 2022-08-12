@@ -4,7 +4,10 @@ import json
 
 def main():
     title_numb = input("What number SOTW is running this week? ")
-    date = input("What day will the competition start? (YYYY-MM-DD) ")
+    date_start = input("What day will the competition start? (YYYY-MM-DD) ")
+    date_end = input("What day will the competition end? (YYYY-MM-DD) ")
+    wom_code = config('WOM')
+    
     usable_metrics = open("usable-metrics.txt", "r")
     metric_list = [line.strip() for line in usable_metrics]
     usable_metrics.close()
@@ -17,14 +20,15 @@ def main():
         else:
             valid_metric = False
     
-    data = {
+    payload = {
                 "title": "Kalico Cat SOTW " + title_numb, 
                 "metric": metric, 
-                "startsAt": "2020-12-21T12:00:00.000Z", 
-                "endsAt": "2020-12-27T12:00:00.000Z", 
+                "startsAt": date_start + "T12:00:00.000Z", 
+                "endsAt": date_end + "T12:00:00.000Z", 
                 "groupId": "909", 
-                "groupVerificationCode": "ENV"
+                "groupVerificationCode": wom_code
             }
+    
     
 if __name__ == '__main__':
     main()
