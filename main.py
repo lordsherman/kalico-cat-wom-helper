@@ -1,9 +1,10 @@
+from decouple import config
 import requests
 import json
 
-def gather_details():
+def main():
     title_numb = input("What number SOTW is running this week? ")
-    date = input("What day will the competition start? (MM-DD-YYYY) ")
+    date = input("What day will the competition start? (YYYY-MM-DD) ")
     usable_metrics = open("usable-metrics.txt", "r")
     metric_list = [line.strip() for line in usable_metrics]
     usable_metrics.close()
@@ -16,10 +17,14 @@ def gather_details():
         else:
             valid_metric = False
     
-    return title_numb, metric, date
-
-def main():
-    gather_details()
+    data = {
+                "title": "Kalico Cat SOTW " + title_numb, 
+                "metric": metric, 
+                "startsAt": "2020-12-21T12:00:00.000Z", 
+                "endsAt": "2020-12-27T12:00:00.000Z", 
+                "groupId": "909", 
+                "groupVerificationCode": "ENV"
+            }
     
 if __name__ == '__main__':
     main()
