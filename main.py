@@ -23,13 +23,13 @@ def main():
     payload = {
                 "title": "Kalico Cat SOTW " + title_numb, 
                 "metric": metric, 
-                "startsAt": date_start + "T12:00:00.000Z", 
-                "endsAt": date_end + "T12:00:00.000Z", 
-                "groupId": "909", 
+                "startsAt": date_start + "T16:00:00.000Z", 
+                "endsAt": date_end + "T16:00:00.000Z", 
+                "groupId": 909, 
                 "groupVerificationCode": wom_code
             }
-    create_comp = requests.post("https://api.wiseoldman.net/competitions", json=payload)
-    print(create_comp)
+    create_comp = requests.post("https://api.wiseoldman.net/v2/competitions", json=payload)
+    print(create_comp.text)
     
 if __name__ == '__main__':
     main()
