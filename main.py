@@ -10,11 +10,11 @@ tab1, tab2 = st.tabs(["SOTW Competition", "BOTW Competition"])
 
 with tab1:
     st.header("SOTW Competition")
-    wom_code = st.text_input("Enter your WOM code (for SOTW):", key="wom_sotw")
     title_numb = st.text_input("What number SOTW is running this week?", key="title_sotw")
     date_start = st.text_input("What day will the competition start? (YYYY-MM-DD)", key="date_start_sotw")
     date_end = st.text_input("What day will the competition end? (YYYY-MM-DD)", key="date_end_sotw")
     metric = st.text_input("What is this week's skill? (lowercase skill name)", key="metric_sotw")
+    wom_code = st.text_input("Enter your WOM code (for SOTW):", key="wom_sotw")
     
     if st.button("Submit SOTW", key="submit_sotw"):
         if not wom_code:
@@ -35,11 +35,11 @@ with tab1:
 
 with tab2:
     st.header("BOTW Competition")
-    wom_code_botw = st.text_input("Enter your WOM code (for BOTW):", key="wom_botw")
     title_numb_botw = st.text_input("What number BOTW is running this week?", key="title_botw")
     date_start_botw = st.text_input("What day will the competition start? (YYYY-MM-DD)", key="date_start_botw")
     date_end_botw = st.text_input("What day will the competition end? (YYYY-MM-DD)", key="date_end_botw")
     metric_botw = st.text_input("What is this week's boss? (lowercase boss name)", key="metric_botw")
+    wom_code_botw = st.text_input("Enter your WOM code (for BOTW):", key="wom_botw")
     
     if st.button("Submit BOTW", key="submit_botw"):
         if not wom_code_botw:
