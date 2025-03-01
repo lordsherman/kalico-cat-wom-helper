@@ -1,46 +1,30 @@
-from decouple import config
+import streamlit as st
 import requests
-import json
 
-def main():
-    title_numb = input("What number SOTW is running this week? ")
-    date_start = input("What day will the competition start? (YYYY-MM-DD) ")
-    date_end = input("What day will the competition end? (YYYY-MM-DD) ")
-    wom_code = config('WOM')
-    
-    usable_metrics = open("usable-metrics.txt", "r")
-    metric_list = [line.strip() for line in usable_metrics]
-    usable_metrics.close()
-    
-    valid_metric = True
-    while valid_metric:
-        metric = input("What is this weeks skill? (lowercase skill name) ")
-        if metric not in metric_list:
-            print("Please enter a usable metric. Skills need to be all lowercase.")
-        else:
-            valid_metric = False
-    
-    payload = {
-                "title": "Kalico Cat SOTW " + title_numb, 
-                "metric": metric, 
-                "startsAt": date_start + "T16:00:00.000Z", 
-                "endsAt": date_end + "T16:00:00.000Z", 
-                "groupId": 909, 
-                "groupVerificationCode": wom_code
-            }
-    create_comp = requests.post("https://api.wiseoldman.net/v2/competitions", json=payload)
-    print(create_comp.text)
-    
-if __name__ == '__main__':
-    main()
+with open("usable-metrics.txt", "r") as f:
+    metric_list = [line.strip() for line in f]
 
-# Example POST Payload
-# {
-#   "title": "Fishing SOTW", 
-#   "metric": "fishing", 
-#   "startsAt": "2020-12-21T19:00:00.000Z", 
-#   "endsAt": "2020-12-27T19:00:00.000Z", 
-#   "groupId": 909, 
-#   "groupVerificationCode": "ENV"
-# }
+st.title("Competition Starter Tool")
 
+title_numb = st.text_input("What number SOTW is running this week?")
+date_start = st.text_input("What day will the competition start? (YYYY-MM-DD)")
+date_end = st.text_input("What day will the competition end? (YYYY-MM-DD)")
+metric = st.text_input("What is this week's skill? (lowercase skill name)")
+wom_code = st.text_input("Enter your group verification code (WOM):")
+
+if st.button("Submit"):
+    if not wom_code:
+        st.error("Please enter the WOM code.")
+    elif metric not in metric_list:
+        st.error("Please enter a usable metric (all lowercase).")
+    else:
+        payload = {
+            "title": "Kalico Cat SOTW " + title_numb, 
+            "metric": metric, 
+            "startsAt": date_start + "T16:00:00.000Z", 
+            "endsAt": date_end + "T16:00:00.000Z", 
+            "groupId": 909, 
+            "groupVerificationCode": wom_code
+        }
+        response = requests.post("https://api.wiseoldman.net/v2/competitions", json=payload)
+        st.write("API Response:", response.text)
