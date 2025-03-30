@@ -33,7 +33,7 @@ with tab1:
             st.error("Please enter a usable metric (all lowercase).")
         else:
             payload = {
-                "title": "Kalico Cat SOTW " + title_numb, 
+                "title": "Toe Beans SOTW " + title_numb, 
                 "metric": metric, 
                 "startsAt": get_est_timestamp(date_start.strftime("%Y-%m-%d")), 
                 "endsAt": get_est_timestamp(date_end.strftime("%Y-%m-%d")), 
