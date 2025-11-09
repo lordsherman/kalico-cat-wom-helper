@@ -22,6 +22,7 @@ farming
 runecrafting
 hunter
 construction
+sailing
 league_points
 bounty_hunter_hunter
 bounty_hunter_rogue
