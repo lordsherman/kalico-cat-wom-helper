@@ -34,7 +34,7 @@ with tab1:
             st.error("Please select a metric.")
         else:
             payload = {
-                "title": "Toe Beans SOTW " + title_numb, 
+                "title": "Cat Chat SOTW " + title_numb, 
                 "metric": metric, 
                 "startsAt": get_est_timestamp(date_start.strftime("%Y-%m-%d")), 
                 "endsAt": get_est_timestamp(date_end.strftime("%Y-%m-%d")), 
@@ -61,7 +61,7 @@ with tab2:
             st.error("Please select a metric.")
         else:
             payload = {
-                "title": "Toe Beans BOTW " + title_numb_botw, 
+                "title": "Cat Chat BOTW " + title_numb_botw, 
                 "metric": metric_botw, 
                 "startsAt": get_est_timestamp(date_start_botw.strftime("%Y-%m-%d")), 
                 "endsAt": get_est_timestamp(date_end_botw.strftime("%Y-%m-%d")), 
